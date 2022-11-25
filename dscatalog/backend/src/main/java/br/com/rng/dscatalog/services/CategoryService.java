@@ -1,6 +1,9 @@
 package br.com.rng.dscatalog.services;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +24,12 @@ public class CategoryService {
       List<Category> categories = categoryRepository.findAll();
 
       return categories.stream().map(category -> new CategoryDTO(category)).toList();
+   }
+
+   @Transactional(readOnly = true)
+   public CategoryDTO findById(Long id) {
+      Optional<Category> category = categoryRepository.findById(id);
+
+      return new CategoryDTO(category.orElseThrow(() -> new EntityNotFoundException("Entity not found!")));
    }
 }
