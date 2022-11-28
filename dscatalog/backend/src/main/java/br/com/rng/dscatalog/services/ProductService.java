@@ -4,6 +4,9 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
+import br.com.rng.dscatalog.dto.CategoryDTO;
+import br.com.rng.dscatalog.entities.Category;
+import br.com.rng.dscatalog.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -24,11 +27,14 @@ public class ProductService {
    @Autowired
    private ProductRepository productRepository;
 
+   @Autowired
+   private CategoryRepository categoryRepository;
+
    @Transactional(readOnly = true)
    public Page<ProductDTO> findAllPaged(PageRequest pageRequest) {
-      Page<Product> categories = productRepository.findAll(pageRequest);
+      Page<Product> products = productRepository.findAll(pageRequest);
 
-      return categories.map(Product -> new ProductDTO(Product));
+      return products.map(product -> new ProductDTO(product, product.getCategories()));
    }
 
    @Transactional(readOnly = true)
@@ -40,23 +46,23 @@ public class ProductService {
    }
 
    @Transactional
-   public ProductDTO insert(ProductDTO ProductDTO) {
+   public ProductDTO insert(ProductDTO productDTO) {
 
-      Product Product = new Product();
-      // Product.setName(ProductDTO.getName());
-      Product = productRepository.save(Product);
+      Product product = new Product();
+      copyDtoToEntity(productDTO, product);
+      product = productRepository.save(product);
 
-      return new ProductDTO(Product);
+      return new ProductDTO(product);
    }
 
    @Transactional
-   public ProductDTO update(Long id, ProductDTO ProductDTO) {
+   public ProductDTO update(Long id, ProductDTO productDTO) {
       try {
-         Product Product = productRepository.getReferenceById(id);
-         // Product.setName(ProductDTO.getName());
-         Product = productRepository.save(Product);
+         Product product = productRepository.getReferenceById(id);
+         copyDtoToEntity(productDTO, product);
+         product = productRepository.save(product);
 
-         return new ProductDTO(Product);
+         return new ProductDTO(product);
 
       } catch (EntityNotFoundException e) {
          throw new ResourceNotFoundException("Id not found: " + id);
@@ -70,6 +76,20 @@ public class ProductService {
          throw new ResourceNotFoundException("Id not found: " + id);
       } catch (DataIntegrityViolationException e) {
          throw new DatabaseException("Integrity violation!");
+      }
+   }
+
+   private void copyDtoToEntity(ProductDTO productDTO, Product product) {
+      product.setName(productDTO.getName());
+      product.setDescription(productDTO.getDescription());
+      product.setDate(productDTO.getDate());
+      product.setImgUrl(productDTO.getImgUrl());
+      product.setPrice(productDTO.getPrice());
+
+      product.getCategories().clear();
+      for(CategoryDTO categoryDTO: productDTO.getCategories()) {
+         Category category = categoryRepository.getReferenceById(categoryDTO.getId());
+         product.getCategories().add(category);
       }
    }
 }
