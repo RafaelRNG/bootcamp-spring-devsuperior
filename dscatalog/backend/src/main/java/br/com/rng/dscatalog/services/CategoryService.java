@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -67,8 +68,6 @@ public class CategoryService {
          categoryRepository.deleteById(id);
       } catch (EmptyResultDataAccessException e) {
          throw new ResourceNotFoundException("Id not found: " + id);
-      } catch (DataIntegrityViolationException e) {
-         throw new DatabaseException("Integrity violation!");
       }
    }
 }
