@@ -1,6 +1,5 @@
 package br.com.rng.dscatalog.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
