@@ -3,6 +3,7 @@ package br.com.rng.client.services;
 import br.com.rng.client.dtos.ClientDTO;
 import br.com.rng.client.entities.Client;
 import br.com.rng.client.repositories.ClientRepository;
+import br.com.rng.client.services.exceptions.ObjectNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +24,7 @@ public class ClientService {
     }
 
     public ClientDTO findById(Long id) {
-        Client client = clientRepository.findById(id).get();
+        Client client = clientRepository.findById(id).orElseThrow(() -> new ObjectNotFound("Unable to search for element"));
 
         return new ClientDTO(client);
     }
