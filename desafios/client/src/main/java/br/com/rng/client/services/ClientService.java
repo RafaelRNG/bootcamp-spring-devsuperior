@@ -72,6 +72,5 @@ public class ClientService {
         client.setIncome(clientDTO.getIncome());
         client.setBirthDate(clientDTO.getBirthDate());
         client.setChildren(clientDTO.getChildren());
-
     }
 }
