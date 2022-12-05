@@ -1,7 +1,5 @@
 package br.com.rng.dscatalog.services;
 
-import java.util.Optional;
-
 import javax.persistence.EntityNotFoundException;
 
 import br.com.rng.dscatalog.dto.CategoryDTO;
@@ -87,7 +85,7 @@ public class ProductService {
       product.setPrice(productDTO.getPrice());
 
       product.getCategories().clear();
-      for(CategoryDTO categoryDTO: productDTO.getCategories()) {
+      for (CategoryDTO categoryDTO : productDTO.getCategories()) {
          Category category = categoryRepository.getReferenceById(categoryDTO.getId());
          product.getCategories().add(category);
       }
