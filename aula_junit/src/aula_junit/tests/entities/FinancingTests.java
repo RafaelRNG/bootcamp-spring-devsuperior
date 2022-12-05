@@ -7,6 +7,22 @@ import org.junit.jupiter.api.Test;
 public class FinancingTests {
 
     @Test
+    public void constructorShouldcreateAFinancingWhenInstanceANewObject() {
+        Financing financing = new Financing(1l, 200000.00, 4000.00, 80);
+
+        Assertions.assertInstanceOf(Financing.class, financing);
+    }
+
+    @Test
+    public void constructorShouldDoesNotCreateAFinancingWhenInstanceANewObjectInvalid() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Financing financing = new Financing(1l, 20000000.00, 4000.00, 80);
+
+            Assertions.assertInstanceOf(Financing.class, financing);
+        });
+    }
+
+    @Test
     public void setTotalAmountShouldChangeTotalAmountOfFinancing() {
         Financing financing = new Financing(1l, 200000.00, 4000.00, 80);
         Double newValueTotalAmount = 10000.00;
@@ -23,7 +39,7 @@ public class FinancingTests {
             Double newValueTotalAmount = 10000000.00;
             financing.setTotalAmount(newValueTotalAmount);
 
-            Assertions.assertTrue(newValueTotalAmount == financing.getTotalAmount());
+            Assertions.assertEquals(newValueTotalAmount, financing.getTotalAmount());
         });
     }
 
