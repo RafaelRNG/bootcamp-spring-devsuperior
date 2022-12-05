@@ -71,6 +71,7 @@ public class Financing {
 		}
 	}
 
+	//override default methods
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
