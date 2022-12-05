@@ -6,6 +6,26 @@ import org.junit.jupiter.api.Test;
 
 public class FinancingTests {
 
+    @Test
+    public void setTotalAmountShouldChangeTotalAmountOfFinancing() {
+        Financing financing = new Financing(1l, 200000.00, 4000.00, 80);
+        Double newValueTotalAmount = 10000.00;
+        financing.setTotalAmount(newValueTotalAmount);
+
+        Assertions.assertEquals(newValueTotalAmount, financing.getTotalAmount());
+    }
+
+    @Test
+    public void setTotalAmountShuldThorwExceptionWhenRequestChangeTotalAmountNotValid() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Financing financing = new Financing(1l, 200000.00, 4000.00, 80);
+
+            Double newValueTotalAmount = 10000000.00;
+            financing.setTotalAmount(newValueTotalAmount);
+
+            Assertions.assertTrue(newValueTotalAmount == financing.getTotalAmount());
+        });
+    }
 
     @Test
     public void setIncomeShouldChangeIncomeOfFinancing() {
