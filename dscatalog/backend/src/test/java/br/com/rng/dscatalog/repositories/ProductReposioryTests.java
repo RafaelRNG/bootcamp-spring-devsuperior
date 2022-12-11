@@ -28,6 +28,23 @@ public class ProductReposioryTests {
         countTotatlProducts = 25L;
     }
 
+
+    @Test
+    public void findProductShouldMustNotReturnProductWhenIdIsNotNull() {
+
+        Optional<Product> product = productRepository.findById(nonExistingId);
+
+        Assertions.assertFalse(product.isPresent());
+    }
+
+    @Test
+    public void findProductShouldReturnProductWhenIdIsNotNull() {
+
+        Optional<Product> product = productRepository.findById(exintingId);
+
+        Assertions.assertTrue(product.isPresent());
+    }
+
     @Test
     public void saveShouldPersistWithAutoIncrementWhenIdIsNull() {
         Product product = Factory.createProduct();
