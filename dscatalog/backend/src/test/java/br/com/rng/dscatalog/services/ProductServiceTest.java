@@ -1,18 +1,23 @@
 package br.com.rng.dscatalog.services;
 
+import br.com.rng.dscatalog.entities.Product;
 import br.com.rng.dscatalog.repositories.ProductRepository;
 import br.com.rng.dscatalog.services.exceptions.DatabaseException;
 import br.com.rng.dscatalog.services.exceptions.ResourceNotFoundException;
+import br.com.rng.dscatalog.tests.Factory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.mockito.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
+import java.util.Optional;
 
 @ExtendWith(value = SpringExtension.class)
 public class ProductServiceTest {
@@ -26,12 +31,24 @@ public class ProductServiceTest {
     private long existingId;
     private long nonExistingId;
     private long dependentId;
+    private Product product;
+    private PageImpl<Product> page;
 
     @BeforeEach
     void setUp() throws Exception {
         existingId = 1L;
         nonExistingId = 1000L;
-        dependentId = 4L;
+        dependentId = 3L;
+        product = Factory.createProduct();
+        page = new PageImpl(List.of(product));
+
+        Mockito.when(productRepository.findAll((Pageable) ArgumentMatchers.any())).thenReturn(page);
+
+        Mockito.when(productRepository.save(ArgumentMatchers.any())).thenReturn(product);
+
+        Mockito.when(productRepository.findById(existingId)).thenReturn(Optional.of(product));
+
+        Mockito.when(productRepository.findById(nonExistingId)).thenReturn(Optional.empty());
 
         Mockito.doNothing().when(productRepository).deleteById(existingId);
 
