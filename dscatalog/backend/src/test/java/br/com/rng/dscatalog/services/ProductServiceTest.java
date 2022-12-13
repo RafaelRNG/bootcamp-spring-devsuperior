@@ -1,5 +1,6 @@
 package br.com.rng.dscatalog.services;
 
+import br.com.rng.dscatalog.dto.ProductDTO;
 import br.com.rng.dscatalog.entities.Product;
 import br.com.rng.dscatalog.repositories.ProductRepository;
 import br.com.rng.dscatalog.services.exceptions.DatabaseException;
@@ -12,7 +13,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -55,6 +58,17 @@ public class ProductServiceTest {
         Mockito.doThrow(EmptyResultDataAccessException.class).when(productRepository).deleteById(nonExistingId);
 
         Mockito.doThrow(DataIntegrityViolationException.class).when(productRepository).deleteById(dependentId);
+    }
+
+    @Test
+    public void findAllPagedShouldReturnPage() {
+
+        Pageable pageable = PageRequest.of(0, 10);
+
+        Page<ProductDTO> result = productService.findAllPaged(pageable);
+
+        Assertions.assertNotNull(result);
+        Mockito.verify(productRepository, Mockito.times(1)).findAll(pageable);
     }
 
     @Test
