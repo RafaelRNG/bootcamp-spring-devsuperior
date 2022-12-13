@@ -2,7 +2,6 @@ package br.com.rng.dscatalog.services;
 
 import br.com.rng.dscatalog.dto.ProductDTO;
 import br.com.rng.dscatalog.entities.Product;
-import br.com.rng.dscatalog.repositories.CategoryRepository;
 import br.com.rng.dscatalog.repositories.ProductRepository;
 import br.com.rng.dscatalog.services.exceptions.DatabaseException;
 import br.com.rng.dscatalog.services.exceptions.ResourceNotFoundException;
@@ -68,7 +67,7 @@ public class ProductServiceTest {
         Mockito.doThrow(EntityNotFoundException.class).when(productRepository).getReferenceById(nonExistingId);
     }
 
-    //Pageable test
+    // Pageable test
     @Test
     public void findAllPagedShouldReturnPage() {
 
@@ -80,7 +79,7 @@ public class ProductServiceTest {
         Mockito.verify(productRepository, Mockito.times(1)).findAll(pageable);
     }
 
-    //findById Tests
+    // findById Tests
     @Test
     public void findByIdShouldReturnProductWhenIdExists() {
         ProductDTO productDTO = productService.findById(existingId);
@@ -99,7 +98,7 @@ public class ProductServiceTest {
         Mockito.verify(productRepository, Mockito.times(1)).findById(nonExistingId);
     }
 
-    //update tests
+    // update tests
     @Test
     public void updateShouldReturnProductUpdateWhenIdExists() {
 
@@ -118,7 +117,7 @@ public class ProductServiceTest {
         Mockito.verify(productRepository, Mockito.times(1)).getReferenceById(nonExistingId);
     }
 
-    //deleteById Tests
+    // deleteById Tests
     @Test
     public void deleteShouldDoNothingWhenIdExists() {
         Assertions.assertDoesNotThrow(() -> {
