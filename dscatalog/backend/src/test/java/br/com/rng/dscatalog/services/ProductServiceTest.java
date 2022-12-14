@@ -1,7 +1,10 @@
 package br.com.rng.dscatalog.services;
 
+import br.com.rng.dscatalog.dto.CategoryDTO;
 import br.com.rng.dscatalog.dto.ProductDTO;
+import br.com.rng.dscatalog.entities.Category;
 import br.com.rng.dscatalog.entities.Product;
+import br.com.rng.dscatalog.repositories.CategoryRepository;
 import br.com.rng.dscatalog.repositories.ProductRepository;
 import br.com.rng.dscatalog.services.exceptions.DatabaseException;
 import br.com.rng.dscatalog.services.exceptions.ResourceNotFoundException;
@@ -32,6 +35,9 @@ public class ProductServiceTest {
     @Mock
     private ProductRepository productRepository;
 
+    @Mock
+    private CategoryRepository categoryRepository;
+
     private long existingId;
     private long nonExistingId;
     private long dependentId;
@@ -48,22 +54,21 @@ public class ProductServiceTest {
         productDTO = Factory.createProductDTO();
         page = new PageImpl(List.of(product));
 
+        //page products
         Mockito.when(productRepository.findAll((Pageable) ArgumentMatchers.any())).thenReturn(page);
 
+        //findById Products
         Mockito.when(productRepository.findById(existingId)).thenReturn(Optional.of(product));
-
         Mockito.when(productRepository.findById(nonExistingId)).thenReturn(Optional.empty());
 
+        //update Product
         Mockito.when(productRepository.getReferenceById(existingId)).thenReturn(product);
-
         Mockito.when(productRepository.save(ArgumentMatchers.any())).thenReturn(product);
 
+        //deleteById Product
         Mockito.doNothing().when(productRepository).deleteById(existingId);
-
         Mockito.doThrow(EmptyResultDataAccessException.class).when(productRepository).deleteById(nonExistingId);
-
         Mockito.doThrow(DataIntegrityViolationException.class).when(productRepository).deleteById(dependentId);
-
         Mockito.doThrow(EntityNotFoundException.class).when(productRepository).getReferenceById(nonExistingId);
     }
 
