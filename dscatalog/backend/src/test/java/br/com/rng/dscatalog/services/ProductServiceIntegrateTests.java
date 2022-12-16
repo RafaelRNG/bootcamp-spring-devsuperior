@@ -13,11 +13,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.print.Pageable;
-
 @SpringBootTest
 @Transactional
-public class ProductServiceIntegrateTest {
+public class ProductServiceIntegrateTests {
 
     @Autowired
     private ProductService productService;

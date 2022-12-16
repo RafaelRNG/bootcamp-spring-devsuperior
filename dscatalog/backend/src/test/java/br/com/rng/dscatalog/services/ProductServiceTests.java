@@ -1,8 +1,6 @@
 package br.com.rng.dscatalog.services;
 
-import br.com.rng.dscatalog.dto.CategoryDTO;
 import br.com.rng.dscatalog.dto.ProductDTO;
-import br.com.rng.dscatalog.entities.Category;
 import br.com.rng.dscatalog.entities.Product;
 import br.com.rng.dscatalog.repositories.CategoryRepository;
 import br.com.rng.dscatalog.repositories.ProductRepository;
@@ -27,7 +25,7 @@ import java.util.List;
 import java.util.Optional;
 
 @ExtendWith(value = SpringExtension.class)
-public class ProductServiceTest {
+public class ProductServiceTests {
 
     @InjectMocks
     private ProductService productService;

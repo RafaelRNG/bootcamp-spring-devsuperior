@@ -73,8 +73,7 @@ public class ProductResourceTests {
     @Test
     public void findAllShouldReturnPage() throws Exception {
         // action
-        ResultActions resultActions = mockMvc
-                .perform(MockMvcRequestBuilders.get("/products").accept(MediaType.APPLICATION_JSON));
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/products").accept(MediaType.APPLICATION_JSON));
 
         // Assertions
         resultActions.andExpect(MockMvcResultMatchers.status().isOk());
