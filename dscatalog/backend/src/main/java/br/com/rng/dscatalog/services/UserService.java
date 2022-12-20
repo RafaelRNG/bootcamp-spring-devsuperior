@@ -1,15 +1,8 @@
 package br.com.rng.dscatalog.services;
 
-import br.com.rng.dscatalog.dto.CategoryDTO;
-import br.com.rng.dscatalog.dto.ProductDTO;
-import br.com.rng.dscatalog.dto.RoleDTO;
-import br.com.rng.dscatalog.dto.UserDTO;
-import br.com.rng.dscatalog.entities.Category;
-import br.com.rng.dscatalog.entities.Product;
+import br.com.rng.dscatalog.dtos.*;
 import br.com.rng.dscatalog.entities.Role;
 import br.com.rng.dscatalog.entities.User;
-import br.com.rng.dscatalog.repositories.CategoryRepository;
-import br.com.rng.dscatalog.repositories.ProductRepository;
 import br.com.rng.dscatalog.repositories.RoleRepository;
 import br.com.rng.dscatalog.repositories.UserRepository;
 import br.com.rng.dscatalog.services.exceptions.DatabaseException;
@@ -19,6 +12,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +26,9 @@ public class UserService {
 
    @Autowired
    private RoleRepository roleRepository;
+
+   @Autowired
+   private BCryptPasswordEncoder bCryptPasswordEncoder;
 
    @Transactional(readOnly = true)
    public Page<UserDTO> findAllPaged(Pageable pageable) {
@@ -49,10 +46,11 @@ public class UserService {
    }
 
    @Transactional
-   public UserDTO insert(UserDTO userDTO) {
+   public UserDTO insert(UserInsertDTO userInsertDTO) {
 
       User user = new User();
-      copyDtoToEntity(userDTO, user);
+      copyDtoToEntity(userInsertDTO, user);
+      user.setPassword(bCryptPasswordEncoder.encode(userInsertDTO.getPassword()));
       user = userRepository.save(user);
 
       return new UserDTO(user);
@@ -90,7 +88,7 @@ public class UserService {
       user.setEmail(userDTO.getEmail());
 
       user.getRoles().clear();
-      for(RoleDTO roleDTO: userDTO.getRoleDTOS()) {
+      for(RoleDTO roleDTO: userDTO.getRoles()) {
          Role role = roleRepository.getReferenceById(roleDTO.getId());
          user.getRoles().add(role);
       }

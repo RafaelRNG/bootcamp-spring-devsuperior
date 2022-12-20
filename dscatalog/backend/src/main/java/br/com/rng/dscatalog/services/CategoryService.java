@@ -12,7 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.rng.dscatalog.dto.CategoryDTO;
+import br.com.rng.dscatalog.dtos.CategoryDTO;
 import br.com.rng.dscatalog.entities.Category;
 import br.com.rng.dscatalog.repositories.CategoryRepository;
 import br.com.rng.dscatalog.services.exceptions.DatabaseException;

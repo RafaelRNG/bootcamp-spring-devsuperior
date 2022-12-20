@@ -1,6 +1,6 @@
 package br.com.rng.dscatalog.tests;
 
-import br.com.rng.dscatalog.dto.ProductDTO;
+import br.com.rng.dscatalog.dtos.ProductDTO;
 import br.com.rng.dscatalog.entities.Category;
 import br.com.rng.dscatalog.entities.Product;
 

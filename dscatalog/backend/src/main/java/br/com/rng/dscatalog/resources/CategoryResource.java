@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.rng.dscatalog.dto.CategoryDTO;
+import br.com.rng.dscatalog.dtos.CategoryDTO;
 import br.com.rng.dscatalog.services.CategoryService;
 
 @RestController

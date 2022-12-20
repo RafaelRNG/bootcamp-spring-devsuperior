@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import br.com.rng.dscatalog.dto.ProductDTO;
+import br.com.rng.dscatalog.dtos.ProductDTO;
 import br.com.rng.dscatalog.services.ProductService;
 import br.com.rng.dscatalog.tests.Factory;
 import org.junit.jupiter.api.BeforeEach;

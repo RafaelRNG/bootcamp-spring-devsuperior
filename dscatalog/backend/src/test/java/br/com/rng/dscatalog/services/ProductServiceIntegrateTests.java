@@ -1,6 +1,6 @@
 package br.com.rng.dscatalog.services;
 
-import br.com.rng.dscatalog.dto.ProductDTO;
+import br.com.rng.dscatalog.dtos.ProductDTO;
 import br.com.rng.dscatalog.repositories.ProductRepository;
 import br.com.rng.dscatalog.services.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.Assertions;

@@ -1,6 +1,5 @@
-package br.com.rng.dscatalog.dto;
+package br.com.rng.dscatalog.dtos;
 
-import br.com.rng.dscatalog.entities.Role;
 import br.com.rng.dscatalog.entities.User;
 
 import java.io.Serializable;
@@ -16,7 +15,7 @@ public class UserDTO implements Serializable {
     private String lastName;
     private String email;
 
-    private Set<RoleDTO> roleDTOS = new HashSet<>();
+    private Set<RoleDTO> roles = new HashSet<>();
 
     public UserDTO() {}
 
@@ -33,7 +32,7 @@ public class UserDTO implements Serializable {
         lastName = user.getLastName();
         email = user.getEmail();
 
-        user.getRoles().forEach(role -> roleDTOS.add(new RoleDTO(role)));
+        user.getRoles().forEach(role -> roles.add(new RoleDTO(role)));
     }
 
     public Long getId() {
@@ -68,7 +67,7 @@ public class UserDTO implements Serializable {
         this.email = email;
     }
 
-    public Set<RoleDTO> getRoleDTOS() {
-        return roleDTOS;
+    public Set<RoleDTO> getRoles() {
+        return roles;
     }
 }

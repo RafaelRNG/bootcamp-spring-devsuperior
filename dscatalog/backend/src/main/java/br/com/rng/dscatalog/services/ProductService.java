@@ -2,7 +2,7 @@ package br.com.rng.dscatalog.services;
 
 import javax.persistence.EntityNotFoundException;
 
-import br.com.rng.dscatalog.dto.CategoryDTO;
+import br.com.rng.dscatalog.dtos.CategoryDTO;
 import br.com.rng.dscatalog.entities.Category;
 import br.com.rng.dscatalog.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.rng.dscatalog.dto.ProductDTO;
+import br.com.rng.dscatalog.dtos.ProductDTO;
 import br.com.rng.dscatalog.entities.Product;
 import br.com.rng.dscatalog.repositories.ProductRepository;
 import br.com.rng.dscatalog.services.exceptions.DatabaseException;

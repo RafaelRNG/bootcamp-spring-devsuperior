@@ -1,4 +1,4 @@
-package br.com.rng.dscatalog.dto;
+package br.com.rng.dscatalog.dtos;
 
 import br.com.rng.dscatalog.entities.Role;
 
