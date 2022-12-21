@@ -57,10 +57,10 @@ public class UserService {
    }
 
    @Transactional
-   public UserDTO update(Long id, UserDTO userDTO) {
+   public UserDTO update(Long id, UserUpdateDTO userUpdateDTO) {
       try {
          User user = userRepository.getReferenceById(id);
-         copyDtoToEntity(userDTO, user);
+         copyDtoToEntity(userUpdateDTO, user);
          user = userRepository.save(user);
 
          return new UserDTO(user);
