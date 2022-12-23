@@ -1,6 +1,5 @@
 package br.com.rng.dscatalog.services.validations;
 
-import br.com.rng.dscatalog.dtos.UserInsertDTO;
 import br.com.rng.dscatalog.dtos.UserUpdateDTO;
 import br.com.rng.dscatalog.entities.User;
 import br.com.rng.dscatalog.repositories.UserRepository;
@@ -24,19 +23,21 @@ public class UserUpdateValidator implements ConstraintValidator<UserUpdateValid,
     private HttpServletRequest httpServletRequest;
 
     @Override
-    public void initialize(UserUpdateValid ann) {}
+    public void initialize(UserUpdateValid ann) {
+    }
 
     @Override
     public boolean isValid(UserUpdateDTO dto, ConstraintValidatorContext context) {
 
-        var uriVars = (Map<String, String>) httpServletRequest.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
+        var uriVars = (Map<String, String>) httpServletRequest
+                .getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
         long userId = Long.parseLong(uriVars.get("id"));
 
         List<FieldMessage> list = new ArrayList<>();
 
         User user = userRepository.findByEmail(dto.getEmail());
 
-        if(user != null && userId != user.getId()) {
+        if (user != null && userId != user.getId()) {
             list.add(new FieldMessage("email", "E-mail já existe"));
         }
 
