@@ -1,5 +1,5 @@
+import './assets/styles/custom.scss'
 import './App.css'
-import 'bootstrap/dist/css/bootstrap.css'
 
 function App() {
   return (
