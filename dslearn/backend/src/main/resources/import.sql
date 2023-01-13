@@ -28,3 +28,5 @@ INSERT INTO tb_section(title, description, position, img_uri, resource_id, prere
 INSERT INTO tb_section(title, description, position, img_uri, resource_id, prerequisite_id) VALUES('Capítulo 2', 'Neste capítulo vamos continuar', 2, 'http://www.enoisnafita.com.br/wp-content/uploads/2021/05/banner-curso-online-1.png', 1, 1);
 INSERT INTO tb_section(title, description, position, img_uri, resource_id, prerequisite_id) VALUES('Capítulo 3', 'Neste capítulo vamos finalizar', 3, 'http://www.enoisnafita.com.br/wp-content/uploads/2021/05/banner-curso-online-1.png', 1, 2);
 
+INSERT INTO tb_enrollment(user_id, offer_id, enroll_moment, refund_moment, available, only_update) VALUES(1, 1, TIMESTAMP WITH TIME ZONE '2020-07-13T00:50:07.12345Z', null, true, false);
+INSERT INTO tb_enrollment(user_id, offer_id, enroll_moment, refund_moment, available, only_update) VALUES(2, 1, TIMESTAMP WITH TIME ZONE '2020-07-13T00:50:07.12345Z', null, true, false);
