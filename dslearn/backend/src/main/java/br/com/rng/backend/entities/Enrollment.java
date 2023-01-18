@@ -5,6 +5,7 @@ import br.com.rng.backend.entities.pk.EnrollmentPK;
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -93,5 +94,18 @@ public class Enrollment {
 
     public Set<Deliver> getDelivers() {
         return delivers;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Enrollment that = (Enrollment) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
