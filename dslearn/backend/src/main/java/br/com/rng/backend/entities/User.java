@@ -24,6 +24,9 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private List<Notification> notifications = new ArrayList<>();
 
+    @OneToMany(mappedBy = "author")
+    private Set<Topic> topics = new HashSet<>();
+
     public User() {}
 
     public User(Long id, String name, String email, String password, Set<Role> roles) {
@@ -72,6 +75,14 @@ public class User implements Serializable {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public Set<Topic> getTopics() {
+        return topics;
     }
 
     @Override

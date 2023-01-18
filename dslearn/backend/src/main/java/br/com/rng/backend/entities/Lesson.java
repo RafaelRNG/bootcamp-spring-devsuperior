@@ -31,6 +31,12 @@ public abstract class Lesson implements Serializable {
             @JoinColumn(name = "offer_id") })
     private Set<Enrollment> enrollmentsDone = new HashSet<>();
 
+    @OneToMany(mappedBy = "lesson")
+    private Set<Deliver> deliver = new HashSet<>();
+
+    @OneToMany(mappedBy = "lesson")
+    private Set<Topic> topics = new HashSet<>();
+
     public Lesson() {}
 
     public Lesson(Long id, String title, Integer position, Section section) {
@@ -75,6 +81,11 @@ public abstract class Lesson implements Serializable {
     public Set<Enrollment> getEnrollmentsDone() {
         return enrollmentsDone;
     }
+
+    public Set<Deliver> getDeliver() {
+        return deliver;
+    }
+
 
     @Override
     public boolean equals(Object o) {

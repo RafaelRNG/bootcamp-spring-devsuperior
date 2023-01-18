@@ -5,9 +5,7 @@ import org.springframework.core.serializer.Serializer;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_offer")
@@ -32,6 +30,9 @@ public class Offer implements Serializable {
 
     @OneToMany(mappedBy = "offer")
     private List<Resource> resources = new ArrayList<>();
+
+    @OneToMany(mappedBy = "offer")
+    private Set<Topic> topics = new HashSet<>();
 
     public Offer() {}
 
@@ -85,6 +86,10 @@ public class Offer implements Serializable {
 
     public List<Resource> getResources() {
         return resources;
+    }
+
+    public Set<Topic> getTopics() {
+        return topics;
     }
 
     @Override
