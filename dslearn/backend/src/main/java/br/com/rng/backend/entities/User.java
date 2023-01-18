@@ -27,6 +27,9 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "author")
     private Set<Topic> topics = new HashSet<>();
 
+    @OneToMany(mappedBy = "author")
+    private Set<Reply> replies = new HashSet<>();
+
     public User() {}
 
     public User(Long id, String name, String email, String password, Set<Role> roles) {
@@ -83,6 +86,10 @@ public class User implements Serializable {
 
     public Set<Topic> getTopics() {
         return topics;
+    }
+
+    public Set<Reply> getReplies() {
+        return replies;
     }
 
     @Override

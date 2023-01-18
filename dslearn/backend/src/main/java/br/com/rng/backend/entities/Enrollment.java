@@ -26,7 +26,7 @@ public class Enrollment {
     private Set<Lesson> lessonsDone = new HashSet<>();
 
     @OneToMany(mappedBy = "enrollment")
-    private Set<Deliver> deliver = new HashSet<>();
+    private Set<Deliver> delivers = new HashSet<>();
 
     private Enrollment() {}
 
@@ -91,7 +91,7 @@ public class Enrollment {
         return lessonsDone;
     }
 
-    public Set<Deliver> getDeliver() {
-        return deliver;
+    public Set<Deliver> getDelivers() {
+        return delivers;
     }
 }
