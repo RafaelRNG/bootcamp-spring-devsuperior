@@ -21,10 +21,13 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    private static Logger logger = LoggerFactory.getLogger(UserService.class);
+    @Autowired
+    private AuthService authService;
 
     @Transactional(readOnly = true)
     public UserDTO findById(Long id) {
+        authService.validateSelOrAdmin(id);
+
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 
         return new UserDTO(user);
@@ -35,11 +38,9 @@ public class UserService implements UserDetailsService {
         User user = userRepository.findByEmail(email);
 
         if(user == null) {
-            logger.error("User not found: " + email);
             throw new UsernameNotFoundException("E-mail not found!");
         }
 
-        logger.info("User found: " + email);
         return user;
     }
 

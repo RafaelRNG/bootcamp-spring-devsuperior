@@ -1,7 +1,9 @@
 package br.com.rng.backend.resources.exceptions;
 
 import br.com.rng.backend.services.exceptions.DatabaseException;
+import br.com.rng.backend.services.exceptions.ForbiddenException;
 import br.com.rng.backend.services.exceptions.ResourceNotFoundException;
+import br.com.rng.backend.services.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -31,7 +33,7 @@ public class ResourceExceptionHandler {
     }
 
     @ExceptionHandler(DatabaseException.class)
-    public ResponseEntity<StandardError> databaseException(DatabaseException databaseException, HttpServletRequest httpServletRequest) {
+    public ResponseEntity<StandardError> database(DatabaseException databaseException, HttpServletRequest httpServletRequest) {
 
         Integer status = HttpStatus.BAD_REQUEST.value();
 
@@ -61,5 +63,21 @@ public class ResourceExceptionHandler {
         }
 
         return ResponseEntity.status(status).body(validationError);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<OAuthCustomError> forbidden(ForbiddenException forbiddenException, HttpServletRequest httpServletRequest) {
+
+        OAuthCustomError oAuthCustomError = new OAuthCustomError("Forbidden", forbiddenException.getMessage());
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(oAuthCustomError);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<OAuthCustomError> unauthorized(UnauthorizedException unauthorizedException, HttpServletRequest httpServletRequest) {
+
+        OAuthCustomError oAuthCustomError = new OAuthCustomError("unauthorized", unauthorizedException.getMessage());
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(oAuthCustomError);
     }
 }
