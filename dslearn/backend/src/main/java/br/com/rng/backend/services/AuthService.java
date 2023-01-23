@@ -16,7 +16,7 @@ public class AuthService {
     private UserRepository userRepository;
 
     @Transactional(readOnly = true)
-    private User authenticated() {
+    public User authenticated() {
       try {
           String email = SecurityContextHolder.getContext().getAuthentication().getName();
           return userRepository.findByEmail(email);

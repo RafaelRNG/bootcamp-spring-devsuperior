@@ -19,6 +19,17 @@ INSERT INTO tb_offer(edition, start_moment, end_moment, course_id) VALUES('1.0',
 INSERT INTO tb_offer(edition, start_moment, end_moment, course_id) VALUES('1.0', TIMESTAMP WITH TIME ZONE '2021-07-13T20:50:07.12345Z', TIMESTAMP WITH TIME ZONE '2022-01-04T09:50:07.12345Z', 1);
 
 INSERT INTO tb_notification(text, moment, read, route, user_id) VALUES('NOTIFICAÇÃO DE COMPRA DO BOOTCAMP', TIMESTAMP WITH TIME ZONE '2020-07-13T20:50:07.12345Z', true, '/notification', 1);
+INSERT INTO tb_notification(text, moment, read, route, user_id) VALUES('NOTIFICAÇÃO DO USUÁRIO 1', TIMESTAMP WITH TIME ZONE '2020-07-13T20:50:07.12345Z', true, '/notification', 1);
+INSERT INTO tb_notification(text, moment, read, route, user_id) VALUES('NOTIFICAÇÃO DO USUÁRIO 1', TIMESTAMP WITH TIME ZONE '2020-07-13T20:50:07.12345Z', true, '/notification', 1);
+INSERT INTO tb_notification(text, moment, read, route, user_id) VALUES('NOTIFICAÇÃO DO USUÁRIO 1', TIMESTAMP WITH TIME ZONE '2020-07-13T20:50:07.12345Z', true, '/notification', 1);
+INSERT INTO tb_notification(text, moment, read, route, user_id) VALUES('NOTIFICAÇÃO DO USUÁRIO 1', TIMESTAMP WITH TIME ZONE '2020-07-13T20:50:07.12345Z', true, '/notification', 1);
+INSERT INTO tb_notification(text, moment, read, route, user_id) VALUES('NOTIFICAÇÃO DO USUÁRIO 2', TIMESTAMP WITH TIME ZONE '2020-07-13T20:50:07.12345Z', true, '/notification', 2);
+INSERT INTO tb_notification(text, moment, read, route, user_id) VALUES('NOTIFICAÇÃO DO USUÁRIO 2', TIMESTAMP WITH TIME ZONE '2020-07-13T20:50:07.12345Z', true, '/notification', 2);
+INSERT INTO tb_notification(text, moment, read, route, user_id) VALUES('NOTIFICAÇÃO DO USUÁRIO 2', TIMESTAMP WITH TIME ZONE '2020-07-13T20:50:07.12345Z', true, '/notification', 2);
+INSERT INTO tb_notification(text, moment, read, route, user_id) VALUES('NOTIFICAÇÃO DO USUÁRIO 2', TIMESTAMP WITH TIME ZONE '2020-07-13T20:50:07.12345Z', true, '/notification', 2);
+INSERT INTO tb_notification(text, moment, read, route, user_id) VALUES('NOTIFICAÇÃO DO USUÁRIO 2', TIMESTAMP WITH TIME ZONE '2020-07-13T20:50:07.12345Z', true, '/notification', 2);
+
+
 
 INSERT INTO tb_resource(title, description, position, img_uri, type, offer_id) VALUES('Trilha HTML', 'Trilha principal do curso', 1, 'http://www.enoisnafita.com.br/wp-content/uploads/2021/05/banner-curso-online-1.png', 1, 1);
 INSERT INTO tb_resource(title, description, position, img_uri, type, offer_id) VALUES('Forum', 'Tire suas duvidas', 2, 'http://www.enoisnafita.com.br/wp-content/uploads/2021/05/banner-curso-online-1.png', 2, 1);
