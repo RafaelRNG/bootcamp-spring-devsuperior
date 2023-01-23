@@ -29,8 +29,6 @@ INSERT INTO tb_notification(text, moment, read, route, user_id) VALUES('NOTIFICA
 INSERT INTO tb_notification(text, moment, read, route, user_id) VALUES('NOTIFICAÇÃO DO USUÁRIO 2', TIMESTAMP WITH TIME ZONE '2020-07-13T20:50:07.12345Z', true, '/notification', 2);
 INSERT INTO tb_notification(text, moment, read, route, user_id) VALUES('NOTIFICAÇÃO DO USUÁRIO 2', TIMESTAMP WITH TIME ZONE '2020-07-13T20:50:07.12345Z', true, '/notification', 2);
 
-
-
 INSERT INTO tb_resource(title, description, position, img_uri, type, offer_id) VALUES('Trilha HTML', 'Trilha principal do curso', 1, 'http://www.enoisnafita.com.br/wp-content/uploads/2021/05/banner-curso-online-1.png', 1, 1);
 INSERT INTO tb_resource(title, description, position, img_uri, type, offer_id) VALUES('Forum', 'Tire suas duvidas', 2, 'http://www.enoisnafita.com.br/wp-content/uploads/2021/05/banner-curso-online-1.png', 2, 1);
 INSERT INTO tb_resource(title, description, position, img_uri, type, offer_id) VALUES('Lives', 'Lives exclusivas para turma', 3, 'http://www.enoisnafita.com.br/wp-content/uploads/2021/05/banner-curso-online-1.png', 0, 1);
