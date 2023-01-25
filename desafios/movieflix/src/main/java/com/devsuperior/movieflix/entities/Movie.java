@@ -89,6 +89,10 @@ public class Movie implements Serializable {
         this.synopsis = synopsis;
     }
 
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
     public Genre getGenre() {
         return genre;
     }
