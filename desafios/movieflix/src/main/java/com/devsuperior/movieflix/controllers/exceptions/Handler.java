@@ -1,5 +1,6 @@
 package com.devsuperior.movieflix.controllers.exceptions;
 
+import com.devsuperior.movieflix.services.exceptions.ForbiddenException;
 import com.devsuperior.movieflix.services.exceptions.ObjNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,16 @@ public class Handler {
     public ResponseEntity<FormatException> notFound(ObjNotFoundException obj) {
 
         Integer httpStatus = HttpStatus.NOT_FOUND.value();
+
+        FormatException format = new FormatException(httpStatus, obj.getMessage());
+
+        return ResponseEntity.status(httpStatus).body(format);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<FormatException> forbidden(ForbiddenException obj) {
+
+        Integer httpStatus = HttpStatus.FORBIDDEN.value();
 
         FormatException format = new FormatException(httpStatus, obj.getMessage());
 
