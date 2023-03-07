@@ -7,15 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  public styles: string[] = [
-    "p-3",
-    "shadow-sm d-flex flex-column-reverse",
-    "mt-3",
-    "text-center p-4",
-    "text-center pt-2",
-    "p-4 mt-5",
-    "img-fluid mt-3"
-  ]
+  public homeText: string = 'shadow-sm d-flex flex-column-reverse flex-lg-row justify-content-center container'
 
   constructor() { }
 
