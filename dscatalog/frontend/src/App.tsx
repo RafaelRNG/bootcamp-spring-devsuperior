@@ -1,3 +1,10 @@
-import "./assets/styles/custom.scss";
+import Navbar from 'components/Navbar';
+import './assets/styles/custom.scss';
+import './App.css';
 
-export const App = () => <h1>Olá mundo</h1>;
+export const App = () => (
+  <>
+    <Navbar />
+    <h1>Olá mundo</h1>
+  </>
+);
